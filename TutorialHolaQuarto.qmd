@@ -1,0 +1,30 @@
+---
+title: "Tutorial:Hola, Quarto"
+author: "R Ladies Medellín"
+format: html
+editor: visual
+---
+
+## Descripción General 
+
+Quarto es una versión multilenguaje de [próxima generación](https://quarto.org/docs/faq/rmarkdown.html) de R Markdown de RStudio e incluye docenas de nuevas funciones y capacidades, al mismo tiempo que puede procesar la mayoría de los archivos Rmd existentes sin modificaciones.
+
+En este tutorial, te mostraremos cómo usar RStudio con Quarto. Editarás el código y markdown en RStudio tal como lo harías con cualquier documento computacional (por ejemplo, R Markdown) y obtendrás una vista previa del documento renderizado en la pestaña Visor mientras trabajas.
+
+El siguiente es un documento en Quarto con la extensión .qmd (a la izquierda) junto con su versión renderizada como HTML (a la derecha). También puedes elegir renderizarlo en otros formatos como PDF, MS Word, etc.
+
+Si deseas seguir este tutorial en su propio entorno, sigue los pasos que se describen a continuación.
+
+1.  Descargue e instale la última versión de RStudio:
+
+::: {.callout-note appearance="minimal" icon="false"}
+## [Descargar RStudio](https://posit.co/download/rstudio-desktop/)
+:::
+
+1.  Descargue el documento Quarto, a continuación, ábralo en RStudio y haga clic en Render
+
+::: {.callout-note appearance="minimal"}
+## Descargar HolaQuarto.qmd
+:::
+
+## 

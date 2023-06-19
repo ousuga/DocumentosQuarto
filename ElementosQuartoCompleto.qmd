@@ -1,0 +1,64 @@
+---
+title: "Elementos de Quarto"
+format:
+  html:
+    code-fold: true
+---
+
+```{r}
+#| label: load-packages
+#| echo: false
+#| warning: false
+#| 
+library(readr)
+library(ggplot2)
+library(hrbrthemes)
+library(scales)
+salarios <- read_delim("ds_salaries.csv", 
+    delim = ";", escape_double = FALSE, 
+    col_types = cols(work_year = col_character(), 
+                     remote_ratio = col_character()))
+```
+
+Existen `r nrow(salarios)` observaciones en nuestros datos.
+
+```{r}
+#| echo: false
+
+salario_median <- round(median(salarios$salary_in_usd),2)
+```
+
+El cincuenta por ciento de de las personas del área de Ciencia de datos tiene salarios por debajo de `r salario_median` dólares.
+
+Los gráficos en la Figura @fig-salusd muestran la relación entre el salario y factores como el año, el tamaño de la compañía, el nivel de experiencia y el porcentaje de trabajo remoto. 
+En la Figura @fig-salusd-1 los colores están dados por el tamaño de la compañía, mientras que, en la Figura @fig-salusd-2 los colores están dados por el porcentaje de trabajo remoto.
+
+```{r}
+#| label: fig-salusd
+#| fig-cap: "Salario de profesionales en Ciencia de datos."
+#| fig-subcap:
+#|   - "Salario vs Año y Tamaño compañía "
+#|   - "Salario vs Nivel de experiencia y Porcentaje de trabajo remoto"
+#| layout-ncol: 2
+#| column: page
+#| cache: true
+
+ggplot(salarios, aes(y=salary_in_usd, x=work_year, fill=company_size, 
+                     col = company_size)) +
+  geom_boxplot(alpha=.6) +
+  theme_ipsum() +
+  ylab("Salario (USD)") + xlab("Año") + 
+  scale_y_continuous(labels  = label_number(scale = 1e-3, prefix = "$", 
+                                            suffix = "m", accuracy = 1)) 
+
+
+ggplot(salarios, aes(y=salary_in_usd, x=experience_level, fill=remote_ratio, 
+                     col = remote_ratio)) +
+  geom_boxplot(alpha=.6) +
+  theme_ipsum() +
+  ylab("Salario (USD)") + xlab("Nivel de experiencia") + 
+  scale_y_continuous(labels  = label_number(scale = 1e-3, prefix = "$", 
+                                            suffix = "m", accuracy = 1)) 
+
+
+```

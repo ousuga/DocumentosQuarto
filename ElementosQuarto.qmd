@@ -1,0 +1,34 @@
+---
+title: "Elementos de Quarto"
+---
+
+Este conjunto de datos contiene salarios de profesionales del área de ciencia de datos. Los datos los pueden descargar de la plataforma Kaggle. A continuación haremos la lectura de los datos con la libreria **readr** y usaremos las librerias **ggplot2**, **hrbrthemes**, y **scales** para realizar el boxplot comparativo. 
+
+```{r}
+#| label: load-packages
+#| echo: false
+#| warning: false
+#| 
+library(readr) # Para ...
+library(ggplot2)
+library(hrbrthemes)
+library(scales)
+salarios <- read_delim("ds_salaries.csv", 
+    delim = ";", escape_double = FALSE, 
+    col_types = cols(work_year = col_character(), 
+                     remote_ratio = col_character()))
+```
+
+El siguiente gráfico muestra la relación entre el salario, la experiencia y el porcentaje de trabajo remoto. 
+
+```{r}
+#| label: boxplot
+
+ggplot(salarios, aes(y=salary_in_usd, x=experience_level, 
+                     fill=remote_ratio, col = remote_ratio)) +
+        geom_boxplot(alpha=.6) +
+        theme_ipsum() +
+        ylab("Salario (USD)") + xlab("Nivel de experiencia") + 
+        scale_y_continuous(labels  = label_number(scale = 1e-3, prefix = "$", 
+                                            suffix = "m", accuracy = 1)) 
+```
