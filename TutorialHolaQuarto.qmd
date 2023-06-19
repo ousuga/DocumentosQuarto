@@ -5,7 +5,7 @@ format: html
 editor: visual
 ---
 
-## Descripción General 
+## Descripción General
 
 Quarto es una versión multilenguaje de [próxima generación](https://quarto.org/docs/faq/rmarkdown.html) de R Markdown de RStudio e incluye docenas de nuevas funciones y capacidades, al mismo tiempo que puede procesar la mayoría de los archivos Rmd existentes sin modificaciones.
 
