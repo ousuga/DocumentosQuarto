@@ -101,26 +101,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<section id="quarto" class="level2">
-<h2 class="anchored" data-anchor-id="quarto">Quarto</h2>
-<p>Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <a href="https://quarto.org" class="uri">https://quarto.org</a>.</p>
+<section id="conoce-quarto" class="level2">
+<h2 class="anchored" data-anchor-id="conoce-quarto">Conoce Quarto</h2>
+<p>Quarto le permite entretejer contenido y código ejecutable en un documento terminado. Para obtener más información sobre Quarto, consulte <a href="https://quarto.org" class="uri">https://quarto.org</a>.</p>
 </section>
-<section id="running-code" class="level2">
-<h2 class="anchored" data-anchor-id="running-code">Running Code</h2>
-<p>When you click the <strong>Render</strong> button a document will be generated that includes both content and the output of embedded code. You can embed code like this:</p>
+<section id="conoce-salarios-en-ciencia-de-datos" class="level2">
+<h2 class="anchored" data-anchor-id="conoce-salarios-en-ciencia-de-datos">Conoce Salarios en Ciencia de Datos</h2>
+<p>Los datos de Salarios en Ciencia de Datos de la plataforma <a href="https://www.kaggle.com/datasets/arnabchaki/data-science-salaries-2023">Kaggle</a> contienen 11 columnas que relaciona el salario de ocupaciones en Ciencia de Datos con diversas variables. La base de datos contiene 3755 registros.</p>
+<p>La gráfica que se muestra a continuación muestra la relación entre el salario y el nivel de experiencia de las personas.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 2</code></pre>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(hrbrthemes)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scales)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>salarios<span class="sc">$</span>experience_level <span class="ot">&lt;-</span> <span class="fu">factor</span>(salarios<span class="sc">$</span>experience_level, <span class="at">levels =</span><span class="fu">c</span>(<span class="st">"EN"</span>, <span class="st">"MI"</span>, <span class="st">"SE"</span>, <span class="st">"EX"</span>))</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(salarios, <span class="fu">aes</span>(<span class="at">y=</span>salary_in_usd, <span class="at">x=</span>experience_level, <span class="at">fill=</span>experience_level,</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>                     <span class="at">col =</span> experience_level)) <span class="sc">+</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">alpha=</span>.<span class="dv">6</span>) <span class="sc">+</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_ipsum</span>() <span class="sc">+</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Salario (USD)"</span>) <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">"Nivel de experiencia"</span>) <span class="sc">+</span> </span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels  =</span> <span class="fu">label_number</span>(<span class="at">scale =</span> <span class="fl">1e-3</span>, <span class="at">prefix =</span> <span class="st">"$"</span>, </span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>                                            <span class="at">suffix =</span> <span class="st">"m"</span>, <span class="at">accuracy =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">"none"</span>)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="HolaQuarto_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>You can add options to executable code like this</p>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 4</code></pre>
-</div>
-</div>
-<p>The <code>echo: false</code> option disables the printing of code (only output is displayed).</p>
 </section>
 
 </main>

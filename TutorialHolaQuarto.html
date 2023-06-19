@@ -8,7 +8,7 @@
 
 <meta name="author" content="R Ladies Medellín">
 
-<title>Tutorial:Hola, Quarto</title>
+<title>Tutorial: Hola, Quarto</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -46,7 +80,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Tutorial:Hola, Quarto</h1>
+<h1 class="title">Tutorial: Hola, Quarto</h1>
 </div>
 
 
@@ -71,7 +105,7 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="descripción-general">Descripción General</h2>
 <p>Quarto es una versión multilenguaje de <a href="https://quarto.org/docs/faq/rmarkdown.html">próxima generación</a> de R Markdown de RStudio e incluye docenas de nuevas funciones y capacidades, al mismo tiempo que puede procesar la mayoría de los archivos Rmd existentes sin modificaciones.</p>
 <p>En este tutorial, te mostraremos cómo usar RStudio con Quarto. Editarás el código y markdown en RStudio tal como lo harías con cualquier documento computacional (por ejemplo, R Markdown) y obtendrás una vista previa del documento renderizado en la pestaña Visor mientras trabajas.</p>
-<p>El siguiente es un documento en Quarto con la extensión .qmd (a la izquierda) junto con su versión renderizada como HTML (a la derecha). También puedes elegir renderizarlo en otros formatos como PDF, MS Word, etc.</p>
+<p>El siguiente es un documento en Quarto con la extensión <code>.qmd</code> (a la izquierda) junto con su versión renderizada como HTML (a la derecha). También puedes elegir renderizarlo en otros formatos como PDF, MS Word, etc.</p>
 <p>Si deseas seguir este tutorial en su propio entorno, sigue los pasos que se describen a continuación.</p>
 <ol type="1">
 <li>Descargue e instale la última versión de RStudio:</li>
@@ -82,15 +116,15 @@ ul.task-list li input[type="checkbox"] {
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Descargar RStudio
+<a href="https://posit.co/download/rstudio-desktop/">Descargar RStudio</a>
 </div>
 </div>
 <div class="callout-body-container callout-body">
 
 </div>
 </div>
-<ol type="1">
-<li>Descargue el documento Quarto, a continuación, ábralo en RStudio y haga clic en Render</li>
+<ol start="2" type="1">
+<li>Descargue el documento Quarto <code>(.qmd)</code>, a continuación, ábralo en RStudio y haga clic en <img src="BotonRender.png" class="img-fluid">.</li>
 </ol>
 <div class="callout callout-style-simple callout-note no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -98,7 +132,7 @@ Descargar RStudio
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Descargar HolaQuarto.qmd
+<a href="https://github.com/ousuga/DocumentosQuarto/blob/main/HolaQuarto.qmd">Descargar HolaQuarto.qmd</a>
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -106,8 +140,59 @@ Descargar HolaQuarto.qmd
 </div>
 </div>
 </section>
-<section id="section" class="level2">
-<h2 class="anchored" data-anchor-id="section"></h2>
+<section id="renderizar" class="level2">
+<h2 class="anchored" data-anchor-id="renderizar">Renderizar</h2>
+<p>Use el botón <strong>Render</strong> <img src="BotonRender.png" class="img-fluid"> en el IDE RStudio para renderizar el archivo y obtener una vista previa de la salida con un sólo click o un atajo de teclado (<strong>Windows</strong>:Ctrl+Shift+K ó <strong>Mac</strong>:⇧⌘K).</p>
+<p>Si prefiere renderizar automáticamente cada vez que guarda, puede marcar la opción Renderizar al guardar en la barra de herramientas del editor. La vista previa se actualizará cada vez que vuelva a renderizar el documento. La vista previa en paralelo funciona tanto para salidas HTML como PDF.</p>
+<p>Tenga en cuenta que los documentos también se pueden representar desde la consola R a través del paquete <strong>quarto</strong>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"quarto"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>quarto<span class="sc">::</span><span class="fu">quarto_render</span>(<span class="st">"hello.qmd"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Al renderizar, Quarto genera un nuevo archivo que contiene texto, código y resultados seleccionados del archivo .qmd. El nuevo archivo puede ser un documento <a href="https://quarto.org/docs/output-formats/all-formats.html">HTML</a>, <a href="https://quarto.org/docs/output-formats/pdf-basics.html">PDF</a>, <a href="https://quarto.org/docs/output-formats/ms-word.html">MS Word</a>, una <a href="https://quarto.org/docs/presentations/">presentación</a>, un <a href="https://quarto.org/docs/websites/">sitio web</a>, un <a href="https://quarto.org/docs/books/">libro</a>, <a href="https://quarto.org/docs/interactive/">un documento interactivo</a> u <a href="https://quarto.org/docs/output-formats/all-formats.html">otro formato</a>.</p>
+</section>
+<section id="autoría" class="level2">
+<h2 class="anchored" data-anchor-id="autoría">Autoría</h2>
+<p>En la imagen de abajo podemos ver el mismo documento en los dos modos del editor de RStudio: visual (a la izquierda) y fuente (a la derecha). El <a href="https://quarto.org/docs/visual-editor/">editor visual</a> de RStudio ofrece una experiencia de creación <a href="https://en.wikipedia.org/wiki/WYSIWYM">WYSIWYM</a>para Markdown. Para dar formato (por ejemplo, texto en negrita) puede usar la barra de herramientas, un método abreviado de teclado (<strong>Windows</strong>:Ctrl+B ó <strong>Mac</strong>:⌘B) o la construcción Markdown (<strong>negrita</strong>). El código fuente de texto sin formato subyacente al documento está escrito para usted y puede verlo/editarlo en cualquier momento cambiando al modo fuente para editarlo. Puede alternar entre estos dos modos haciendo clic en <strong>Fuente</strong> y <strong>Visual</strong> en la barra de herramientas del editor.</p>
+<p>A continuación, dirijamos nuestra atención al contenido de nuestro documento Quarto. El archivo contiene tres tipos de contenido: un encabezado YAML, fragmentos de código y texto de markdown.</p>
+</section>
+<section id="encabezado-yaml" class="level2">
+<h2 class="anchored" data-anchor-id="encabezado-yaml">Encabezado YAML</h2>
+<p>Un encabezado YAML (opcional) delimitado por tres guiones <code>(---)</code> en cada extremo.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>title<span class="sc">:</span> <span class="st">"Hola, Quarto"</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>format<span class="sc">:</span> html</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>editor<span class="sc">:</span> visual</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Cuando renderizamos, el <code>title</code>, <code>"Hola, Quarto"</code>, aparecerá en la parte superior del documento renderizado con un tamaño de fuente más grande que el resto del documento. Los otros dos campos YAML indican que la salida debe estar en <code>html</code> <code>format</code> y el documento debe abrirse en el editor visual, de manera predeterminada.</p>
+<p>La sintaxis básica de YAML utiliza pares clave-valor en el formato <code>key: value</code>. Otros campos YAML que se encuentran comúnmente en los encabezados de los documentos incluyen metadatos como <code>author</code>, <code>subtitle</code>, <code>date</code> y opciones de personalización como <code>theme</code>, <code>fontcolor</code>, <code>fig-width</code>, etc. Se puede obtener información sobre todos los campos YAML disponibles para documentos HTML <a href="https://quarto.org/docs/reference/formats/html.html">aquí</a>. Los campos YAML disponibles varían según el formato del documento, consulte <a href="https://quarto.org/docs/reference/formats/pdf.html">aquí</a> los campos YAML para documentos PDF y <a href="https://quarto.org/docs/reference/formats/docx.html">aquí</a> para MS Word.</p>
+</section>
+<section id="fragmentos-de-código" class="level2">
+<h2 class="anchored" data-anchor-id="fragmentos-de-código">Fragmentos de código</h2>
+<p>Fragmentos de código R identificados con <code>{r}</code> con opciones de fragmento (opcional), en estilo YAML, identificados por <code>#\|</code> al principio de la línea.</p>
+<p>En este caso, <code>label</code> del fragmento de código es ###### y establecemos <code>include</code> en <code>false</code> para indicar que no queremos el fragmento en sí ni ninguna de sus salidas en los documentos representados.</p>
+<p>Además de renderizar el documento completo para ver los resultados de los fragmentos de código, también puede ejecutar cada fragmento de código de forma interactiva en el editor de RStudio haciendo clic en el icono <img src="BotonEjecutar.png" class="img-fluid"> o en el método abreviado de teclado (⇧⌘⏎). RStudio ejecuta el código y muestra los resultados en línea dentro de su archivo o en la consola, según su preferencia.</p>
+</section>
+<section id="texto-markdown" class="level2">
+<h2 class="anchored" data-anchor-id="texto-markdown">Texto markdown</h2>
+<p>Texto con formato, incluidos encabezados de sección, hipervínculos, una imagen incrustada y un fragmento de código en línea.</p>
+<p>Quarto utiliza la sintaxis de markdown para el texto. Si usa el editor visual, no necesitará aprender mucha sintaxis de markdown para crear su documento, ya que puede usar los menús y accesos directos para agregar un encabezado, texto en negrita, insertar una tabla, etc. Si usa el editor de código fuente, puede conseguirlos con expresiones de markdown como <code>##</code>, <code>**bold**</code>, etc.</p>
+</section>
+<section id="cómo-funciona-quarto" class="level2">
+<h2 class="anchored" data-anchor-id="cómo-funciona-quarto">Cómo funciona Quarto?</h2>
+<p>Cuando se renderiza un documento Quarto, primero <a href="https://yihui.org/knitr/">knitr</a> ejecuta todos los fragmentos de código y crea un nuevo documento de markdown (.md) que incluye el código y su salida. El archivo de markdown generado es luego procesado por <a href="https://pandoc.org">pandoc</a>, que crea el formato terminado. El botón Render encapsula estas acciones y las ejecuta en el orden correcto para usted.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://quarto.org/docs/get-started/hello/rstudio.html#authoring"><img src="rstudio-qmd-how-it-works.png" class="img-fluid figure-img"></a></p>
+<figcaption class="figure-caption">Tomado de Quarto.org</figcaption>
+</figure>
+</div>
+</section>
+<section id="siguiente" class="level2">
+<h2 class="anchored" data-anchor-id="siguiente">Siguiente</h2>
+<p>Los siguientes tutoriales exploran Quarto con mayor profundidad</p>
 </section>
 
 </main>
