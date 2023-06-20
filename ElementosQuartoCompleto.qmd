@@ -1,5 +1,6 @@
 ---
 title: "Elementos de Quarto"
+lang: es
 format:
   html:
     code-fold: true
@@ -14,26 +15,39 @@ library(readr)
 library(ggplot2)
 library(hrbrthemes)
 library(scales)
-salarios <- read_delim("ds_salaries.csv", 
-    delim = ";", escape_double = FALSE, 
-    col_types = cols(work_year = col_character(), 
-                     remote_ratio = col_character()))
+
+url <- 'https://raw.githubusercontent.com/ousuga/Datos/main/ds_salaries.csv'
+
+salarios <- read_delim(url, delim = ";", escape_double = FALSE, col_types = cols(work_year = col_character(), remote_ratio = col_character()), trim_ws = TRUE)
 ```
 
-Existen `r nrow(salarios)` observaciones en nuestros datos.
+La @fig-salariousd muestra la relación entre el salario, el nivel de experiencia laboral y el porcentaje de trabajo remoto.
 
 ```{r}
-#| echo: false
+#| warning: false
+#| label: fig-salariousd
+#| fig-cap: "Salario de profesionales en Ciencia de datos."
+#| fig-alt: "Boxplot de salario versus experiencia laboral y porcentaje de trabajo remoto."
+#| fig-width: 6
+#| fig-height: 3.5
 
-salario_median <- round(median(salarios$salary_in_usd),2)
+salarios$experience_level <- factor(salarios$experience_level, label=c("EN", "MI", "SE", "EX"))
+salarios$remote_ratio <- factor(salarios$remote_ratio, label=c(0,50,100))
+
+ggplot(salarios, aes(y=salary_in_usd, x=experience_level, fill=remote_ratio, 
+                     col = remote_ratio)) +
+  geom_boxplot(alpha=.6) +
+  theme_ipsum() +
+  ylab("Salario (USD)") + xlab("Nivel de experiencia") + 
+  scale_y_continuous(labels  = label_number(scale = 1e-3, prefix = "$", 
+                                            suffix = "m", accuracy = 1)) 
 ```
-
-El cincuenta por ciento de de las personas del área de Ciencia de datos tiene salarios por debajo de `r salario_median` dólares.
 
 Los gráficos en la Figura @fig-salusd muestran la relación entre el salario y factores como el año, el tamaño de la compañía, el nivel de experiencia y el porcentaje de trabajo remoto. 
 En la Figura @fig-salusd-1 los colores están dados por el tamaño de la compañía, mientras que, en la Figura @fig-salusd-2 los colores están dados por el porcentaje de trabajo remoto.
 
 ```{r}
+#| warning: false
 #| label: fig-salusd
 #| fig-cap: "Salario de profesionales en Ciencia de datos."
 #| fig-subcap:
@@ -62,3 +76,17 @@ ggplot(salarios, aes(y=salary_in_usd, x=experience_level, fill=remote_ratio,
 
 
 ```
+
+Existen `r nrow(salarios)` observaciones en nuestros datos.
+
+```{r}
+#| echo: false
+#| warning: false
+
+library(dplyr)
+salarios %>%
+   group_by(experience_level) %>%
+   summarize(max_salaries = max(salary_in_usd)) -> maxsalarios
+```
+
+El salario máximo de los profesionales con un nivel de experiencia de EN es de `r maxsalarios$max_salaries[1]`, mientras que para un nivel de experiencia de EX el salario máximo es `r maxsalarios$max_salaries[4]`.
