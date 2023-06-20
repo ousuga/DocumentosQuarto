@@ -1,0 +1,24 @@
+---
+title: "Tutorial: Cálculos"
+format: html
+editor: visual
+theme: minty 
+---
+
+## Descripción general
+
+## Salida de celdas
+
+## Código oculto
+
+## Enlace a código
+
+## Figuras
+
+## Múltiples figuras
+
+## Marco de datos
+
+## Código en línea
+
+## Almacenamiento en caché

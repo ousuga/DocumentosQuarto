@@ -1,0 +1,30 @@
+---
+title: "Tutorial: Autoría"
+format: html
+editor: visual
+theme: minty 
+---
+
+## Descripción general
+
+## Formatos de salida
+
+### Opciones de formato
+
+### Múltiples formatos
+
+## Renderizar 
+
+## Secciones
+
+## Ecuaciones
+
+## Citaciones
+
+## Referencias cruzadas
+
+## Rótulos
+
+## Diseño del artículo
+
+## Publicación 

@@ -1,6 +1,5 @@
 ---
 title: "Tutorial: Hola, Quarto"
-author: "R Ladies Medellín"
 format: html
 editor: visual
 theme: minty 
@@ -10,9 +9,9 @@ theme: minty
 
 Quarto es una versión multilenguaje de [próxima generación](https://quarto.org/docs/faq/rmarkdown.html) de R Markdown de RStudio e incluye docenas de nuevas funciones y capacidades, al mismo tiempo que puede procesar la mayoría de los archivos Rmd existentes sin modificaciones.
 
-En este tutorial, te mostraremos cómo usar RStudio con Quarto. Editarás el código y markdown en RStudio tal como lo harías con cualquier documento computacional (por ejemplo, R Markdown) y obtendrás una vista previa del documento renderizado en la pestaña Visor mientras trabajas.
+En este tutorial, mostraremos cómo usar RStudio con Quarto. Al editar el código y el markdown en RStudio tal como se haría con cualquier documento computacional (por ejemplo, R Markdown) se obtendrá una vista previa del documento renderizado en la pestaña Visor mientras se trabaja.
 
-El siguiente es un documento en Quarto con la extensión `.qmd` (a la izquierda) junto con su versión renderizada como HTML (a la derecha). También puedes elegir renderizarlo en otros formatos como PDF, MS Word, etc.
+El siguiente es un documento en Quarto con la extensión `.qmd` (a la izquierda) junto con su versión renderizada como HTML (a la derecha). También puede elegir renderizarlo en otros formatos como PDF, MS Word, etc.
 
 ![](HolaQuarto.png)
 
@@ -24,7 +23,7 @@ Si deseas seguir este tutorial en su propio entorno, sigue los pasos que se desc
 ## [Descargar RStudio](https://posit.co/download/rstudio-desktop/)
 :::
 
-2.  Para el ejemplo que mostraremos instalar los paquetes `readr`, `ggplot2`,`hrbrthemes` y `scales`.
+2.  Para el ejemplo que mostraremos se deben instalar los paquetes `readr`, `ggplot2`,`hrbrthemes` y `scales`.
 
     ```{r, eval = FALSE}
     install.packages(readr)
@@ -43,7 +42,11 @@ Si deseas seguir este tutorial en su propio entorno, sigue los pasos que se desc
 
 Use el botón **Render** ![](BotonRender.png) en el IDE RStudio para renderizar el archivo y obtener una vista previa de la salida con un sólo click o un atajo de teclado (**Windows**:Ctrl+Shift+K ó **Mac**:⇧⌘K).
 
+![](render.png)
+
 Si prefiere renderizar automáticamente cada vez que guarda, puede marcar la opción Renderizar al guardar en la barra de herramientas del editor. La vista previa se actualizará cada vez que vuelva a renderizar el documento. La vista previa en paralelo funciona tanto para salidas HTML como PDF.
+
+![](rendersave.png)
 
 Tenga en cuenta que los documentos también se pueden representar desde la consola R a través del paquete **quarto**:
 
@@ -57,6 +60,12 @@ Al renderizar, Quarto genera un nuevo archivo que contiene texto, código y resu
 ## Autoría
 
 En la imagen de abajo podemos ver el mismo documento en los dos modos del editor de RStudio: visual (a la izquierda) y fuente (a la derecha). El [editor visual](https://quarto.org/docs/visual-editor/) de RStudio ofrece una experiencia de creación [WYSIWYM](https://en.wikipedia.org/wiki/WYSIWYM)para Markdown. Para dar formato (por ejemplo, texto en negrita) puede usar la barra de herramientas, un método abreviado de teclado (**Windows**:Ctrl+B ó **Mac**:⌘B) o la construcción Markdown (**negrita**). El código fuente de texto sin formato subyacente al documento está escrito para usted y puede verlo/editarlo en cualquier momento cambiando al modo fuente para editarlo. Puede alternar entre estos dos modos haciendo clic en **Fuente** y **Visual** en la barra de herramientas del editor.
+
+::: {layout-ncol="2"}
+![](visual.png)
+
+![](source.png)
+:::
 
 A continuación, dirijamos nuestra atención al contenido de nuestro documento Quarto. El archivo contiene tres tipos de contenido: un encabezado YAML, fragmentos de código y texto de markdown.
 
@@ -82,18 +91,25 @@ Fragmentos de código R identificados con `{r}` con opciones de fragmento (opcio
 
 ```{r}
 #| label: load-packages
-#| include: false
+#| include: true
 
+library(readr)
 
+url <- 'https://raw.githubusercontent.com/ousuga/Datos/main/ds_salaries.csv'
+salarios <- read_delim(url, delim = ";", escape_double = FALSE, col_types = cols(work_year = col_character(), remote_ratio = col_character()), trim_ws = TRUE)
 ```
 
-En este caso, `label` del fragmento de código es \###### y establecemos `include` en `false` para indicar que no queremos el fragmento en sí ni ninguna de sus salidas en los documentos representados.
+En este caso, `label` del fragmento de código es `load-packages` y establecemos `include` en `false` para indicar que no queremos el fragmento en sí ni ninguna de sus salidas en los documentos representados.
 
 Además de renderizar el documento completo para ver los resultados de los fragmentos de código, también puede ejecutar cada fragmento de código de forma interactiva en el editor de RStudio haciendo clic en el icono ![](BotonEjecutar.png) o en el método abreviado de teclado (⇧⌘⏎). RStudio ejecuta el código y muestra los resultados en línea dentro de su archivo o en la consola, según su preferencia.
+
+![](ejecutar.png)
 
 ## Texto markdown
 
 Texto con formato, incluidos encabezados de sección, hipervínculos, una imagen incrustada y un fragmento de código en línea.
+
+![](markdown.png){width="400"}
 
 Quarto utiliza la sintaxis de markdown para el texto. Si usa el editor visual, no necesitará aprender mucha sintaxis de markdown para crear su documento, ya que puede usar los menús y accesos directos para agregar un encabezado, texto en negrita, insertar una tabla, etc. Si usa el editor de código fuente, puede conseguirlos con expresiones de markdown como `##`, `**bold**`, etc.
 
@@ -106,3 +122,4 @@ Cuando se renderiza un documento Quarto, primero [knitr](https://yihui.org/knitr
 ## Siguiente
 
 Los siguientes tutoriales exploran Quarto con mayor profundidad
+
