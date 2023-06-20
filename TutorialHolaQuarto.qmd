@@ -14,6 +14,8 @@ En este tutorial, te mostraremos cómo usar RStudio con Quarto. Editarás el có
 
 El siguiente es un documento en Quarto con la extensión `.qmd` (a la izquierda) junto con su versión renderizada como HTML (a la derecha). También puedes elegir renderizarlo en otros formatos como PDF, MS Word, etc.
 
+![](HolaQuarto.png)
+
 Si deseas seguir este tutorial en su propio entorno, sigue los pasos que se describen a continuación.
 
 1.  Descargue e instale la última versión de RStudio:
@@ -22,7 +24,16 @@ Si deseas seguir este tutorial en su propio entorno, sigue los pasos que se desc
 ## [Descargar RStudio](https://posit.co/download/rstudio-desktop/)
 :::
 
-2.  Descargue el documento Quarto `(.qmd)`, a continuación, ábralo en RStudio y haga clic en ![](BotonRender.png).
+2.  Para el ejemplo que mostraremos instalar los paquetes `readr`, `ggplot2`,`hrbrthemes` y `scales`.
+
+    ```{r, eval = FALSE}
+    install.packages(readr)
+    install.packages(ggplot2)
+    install.packages(hrbrthemes)
+    install.packages(scales)
+    ```
+
+3.  Descargue el documento Quarto `(.qmd)`, a continuación, ábralo en RStudio y haga clic en ![](BotonRender.png).
 
 ::: {.callout-note appearance="minimal"}
 ## [Descargar HolaQuarto.qmd](https://github.com/ousuga/DocumentosQuarto/blob/main/HolaQuarto.qmd)
