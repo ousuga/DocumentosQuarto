@@ -13,7 +13,7 @@ theme: minty
 
 ### Múltiples formatos
 
-## Renderizar 
+## Renderizar
 
 ## Secciones
 
@@ -27,4 +27,4 @@ theme: minty
 
 ## Diseño del artículo
 
-## Publicación 
+## Publicación

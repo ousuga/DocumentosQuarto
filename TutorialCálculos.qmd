@@ -7,13 +7,76 @@ theme: minty
 
 ## Descripción general
 
+Quarto admite bloques de código ejecutable dentro de Markdown. Esto le permite crear documentos e informes totalmente reproducibles: el código necesario para producir su salida es parte del documento mismo y se vuelve a ejecutar automáticamente cada vez que se procesa el documento.
+
+En este tutorial, le mostraremos cómo crear documentos computacionales totalmente reproducibles con Quarto en RStudio.
+
+Si desea seguir paso a paso en su propio entorno, descargue el documento Quarto `(.qmd)` a continuación, ábralo en RStudio y haga clic en ![](BotonRender.png)**Render** (o use el método abreviado de teclado: **Windows**:Ctrl+Shift+K ó **Mac**:⇧⌘K). Recomendamos también marcar la casilla **Render on Save** para obtener una vista previa en vivo de sus cambios.
+
+::: {.callout-note appearance="minimal"}
+[Descargar Cálculos.qmd](https://github.com/ousuga/DocumentosQuarto/blob/main/ElementosQuarto.qmd)
+:::
+
 ## Salida de celdas
+
+De forma predeterminada, el código y su salida se muestran dentro del documento representado.
+
+Sin embargo, para algunos documentos, es posible que desee ocultar todo el código y solo mostrar el resultado. Para hacerlo, especifique `echo: false` dentro de la opción de `ejxecute` en el YAML.
+
+```{r, eval = FALSE}
+---
+title: "Quarto Computations"
+execute:
+  echo: false
+---
+```
+
+Si marcó `Render and save` antes, simplemente guarde el documento después de realizar este cambio para obtener una vista previa en vivo. De lo contrario, renderice el documento para ver sus actualizaciones reflejadas. El resultado se verá como el siguiente.
+
+Es posible que desee habilitar selectivamente el `echo` para algunas celdas. Para hacer esto agregue la opción de la celda `echo: true`. Intente esto con el bloque etiquetado `boxplot`.
+
+Guarde el documento nuevamente y tenga en cuenta que el código ahora está incluido para el fragmento del boxplot.
+
+La opción de `echo` se puede establecer en `true`, `false` o `fenced`. El último podría ser de especial interés para escribir documentación y materiales didácticos, ya que le permite incluir el delimitador de código delimitado en su salida de código para enfatizar que el código ejecutable requiere ese delimitador. Puede leer más sobre esta opción en la documentación de [Fenced Echo](https://quarto.org/docs/computations/execution-options.html#fenced-echo).
+
+Hay una gran cantidad de otras opciones disponibles para la salida de la celda, por ejemplo, `warning` para mostrar/ocultar advertencias (que puede ser especialmente útil para mensajes de carga de paquetes), `include` como captura general para evitar que se incluya cualquier salida (código o resultados) en la salida y `error` para evitar que los errores en la ejecución del código detengan la representación del documento (e impriman el error en el documento representado).
+
+Consulte la documentación de [Knitr Cell Options](https://quarto.org/docs/reference/cells/cells-knitr.html) para obtener detalles adicionales.
 
 ## Código oculto
 
+En lugar de ocultar el código por completo, es posible que desee ocultarlo y permitir que los lectores lo vean a su discreción. Puede hacerlo a través de la opción de `code-fold`. Elimine la opción de `echo` que agregamos anteriormente y agregue la opción de formato HTML de `code-fold`.
+
+Guarde el documento nuevamente y tenga en cuenta que ahora se incluyen nuevos widgets de código para cada fragmento de código.
+
+También puede proporcionar un control global sobre esta opción de ocultar el código. Intente agregar `code-tools: true` a las opciones de formato HTML.
+
+Guarde el documento y verá que aparece un menú de código en la parte superior derecha del documento renderizado que brinda control global sobre mostrar y ocultar todo el código.
+
 ## Enlace a código
 
+La opción de `code-link` permite la vinculación de funciones dentro de bloques de código a su documentación en línea. Intente agregar `code-link: true` a las opciones de formato HTML.
+
+```{r, eval = FALSE}
+---
+title: "Cálculos de Quarto"
+format:
+  html:
+    code-link: true
+---
+```
+
+Guarde el documento y observe que las funciones ahora son hipervínculos en los que se puede hacer clic.
+
+Tenga en cuenta que la vinculación de código se implementa actualmente solo para el motor knitr a través del paquete [downlit](https://downlit.r-lib.org).
+
 ## Figuras
+
+Podemos mejorar la apariencia y accesibilidad de nuestra figura. Podemos cambiar su relación de presentación configurando `fig-width` y `fig-height`, proporcionar un `fig-cap`, modificar su label para referencias cruzadas y agregar [texto alternativo](https://medium.com/nightingale/writing-alt-text-for-data-visualization-2a218ef43f81) con `fig-alt`.
+
+Agregaremos las siguientes opciones de fragmentos.
+
+Guarde el documento para ver el gráfico actualizado. Tenga en cuenta que también hemos actualizado la narrativa con una [referencia cruzada](https://quarto.org/docs/authoring/cross-references.html#computations) a esta figura usando lo siguiente.
 
 ## Múltiples figuras
 
