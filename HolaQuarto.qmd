@@ -1,6 +1,5 @@
 ---
-title: "Hola Quarto"
-author: "R-Ladies Medellín"
+title: "Hola, Quarto"
 format: html
 editor: visual
 ---
@@ -9,21 +8,20 @@ editor: visual
 #| label: load-packages
 #| include: false
 #| 
-library(readr)
+library(readr)    # Para leer datos en formato csv
 
 url <- 'https://raw.githubusercontent.com/ousuga/Datos/main/ds_salaries.csv'
 salarios <- read_delim(url, delim = ";", escape_double = FALSE, col_types = cols(work_year = col_character(), remote_ratio = col_character()), trim_ws = TRUE)
 ```
 
 ## Conoce Quarto
-
 Quarto le permite entretejer contenido y código ejecutable en un documento terminado. Para obtener más información sobre Quarto, consulte <https://quarto.org>.
 
 ## Conoce Salarios en Ciencia de Datos
+![](roledatascience.png){style="float:right;" fig-alt="Algunos roles en Ciencia de Datos." width="150"}
 
-![](https://github.com/ousuga/DocumentosQuarto/blob/main/roledatascience.png){style="float:right;" fig-alt="Algunos roles en Ciencia de Datos." width="100"} 
+Los datos de Salarios en Ciencia de Datos de la plataforma [Kaggle](https://www.kaggle.com/datasets/arnabchaki/data-science-salaries-2023) contienen 11 columnas que relacionan el salario de personas que trabajan en Ciencia de Datos con variables relacionadas con las empresas o las personas. La base de datos contiene `r nrow(salarios)` registros.
 
-Los datos de Salarios en Ciencia de Datos de la plataforma [Kaggle](https://www.kaggle.com/datasets/arnabchaki/data-science-salaries-2023) contienen 11 columnas que relaciona el salario de personas que trabajan en Ciencia de Datos con variables de las empresas o de las personas. La base de datos contiene `r nrow(salarios)` registros.
 
 La gráfica que se muestra a continuación muestra la relación entre el salario y el nivel de experiencia de las personas.
 
@@ -32,18 +30,21 @@ La gráfica que se muestra a continuación muestra la relación entre el salario
 #| warning: false
 #| echo: false
 #| 
-library(ggplot2)
-library(hrbrthemes)
-library(scales)
+library(ggplot2)      # Para realizar gráficos
+library(hrbrthemes)   # Para personalizar el tema de la gráfica 
+library(scales)       # Para visualización de números decimales
 
 salarios$experience_level <- factor(salarios$experience_level, levels =c("EN", "MI", "SE", "EX"))
-
 ggplot(salarios, aes(y=salary_in_usd, x=experience_level, fill=experience_level,
                      col = experience_level)) +
   geom_boxplot(alpha=.6) +
-  theme_ipsum() +
-  ylab("Salario (USD)") + xlab("Nivel de experiencia") + 
+  labs(
+    title = "Salarios en Ciencia de datos",
+    subtitle = "Salarios en Ciencia de datos en los últimos 3 años",
+    x = "Nivel de experiencia", y = "Salario (USD)"
+    ) +
   scale_y_continuous(labels  = label_number(scale = 1e-3, prefix = "$", 
                                             suffix = "m", accuracy = 1)) +
+  theme_ipsum() +
   theme(legend.position="none")  
 ```
