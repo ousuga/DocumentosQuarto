@@ -18,7 +18,7 @@ library(tidyverse)  # Para la gestión y visualización de datos
 library(knitr)      # Para tablas
 library(broom)      # Para el resumen del modelo
 library(readr)      # Para lectura de datos separados por csv
-library(ggplot2)
+library(ggplot2)    
 library(hrbrthemes)
 library(scales)
 

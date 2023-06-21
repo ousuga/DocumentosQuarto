@@ -1,8 +1,11 @@
 ---
 title: "Tutorial: Hola, Quarto"
 format: html
+lang: es
+toc: true
 editor: visual
 theme: minty 
+number-sections: true
 ---
 
 ## Descripción General
@@ -13,7 +16,7 @@ En este tutorial, mostraremos cómo usar RStudio con Quarto. Al editar el códig
 
 El siguiente es un documento en Quarto con la extensión `.qmd` (a la izquierda) junto con su versión renderizada como HTML (a la derecha). También puede elegir renderizarlo en otros formatos como PDF, MS Word, etc.
 
-![](HolaQuarto.png)
+![](HolaQuarto.png){width="1000"}
 
 Si deseas seguir este tutorial en su propio entorno, sigue los pasos que se describen a continuación.
 
@@ -40,31 +43,31 @@ Si deseas seguir este tutorial en su propio entorno, sigue los pasos que se desc
 
 ## Renderizar
 
-Use el botón **Render** ![](BotonRender.png) en el IDE RStudio para renderizar el archivo y obtener una vista previa de la salida con un sólo click o un atajo de teclado (**Windows**:Ctrl+Shift+K ó **Mac**:⇧⌘K).
+Use el botón **Render** ![](BotonRender.png) en el IDE RStudio para renderizar el archivo y obtener una vista previa de la salida con un sólo click.
 
-![](render.png)
+![](render.png){width="1000"}
 
-Si prefiere renderizar automáticamente cada vez que guarda, puede marcar la opción Renderizar al guardar en la barra de herramientas del editor. La vista previa se actualizará cada vez que vuelva a renderizar el documento. La vista previa en paralelo funciona tanto para salidas HTML como PDF.
+Si prefiere renderizar automáticamente cada vez que guarda, puede marcar la opción **Render on Save** en la barra de herramientas del editor. La vista previa se actualizará cada vez que vuelva a renderizar el documento. La vista previa en paralelo funciona tanto para salidas HTML como PDF.
 
-![](rendersave.png)
+![](rendersave.png){width="1000"}
 
 Tenga en cuenta que los documentos también se pueden representar desde la consola R a través del paquete **quarto**:
 
 ```{r, eval = FALSE}
 install.packages("quarto")
-quarto::quarto_render("hello.qmd")
+quarto::quarto_render("HolaQuarto.qmd")
 ```
 
 Al renderizar, Quarto genera un nuevo archivo que contiene texto, código y resultados seleccionados del archivo .qmd. El nuevo archivo puede ser un documento [HTML](https://quarto.org/docs/output-formats/all-formats.html), [PDF](https://quarto.org/docs/output-formats/pdf-basics.html), [MS Word](https://quarto.org/docs/output-formats/ms-word.html), una [presentación](https://quarto.org/docs/presentations/), un [sitio web](https://quarto.org/docs/websites/), un [libro](https://quarto.org/docs/books/), [un documento interactivo](https://quarto.org/docs/interactive/) u [otro formato](https://quarto.org/docs/output-formats/all-formats.html).
 
 ## Autoría
 
-En la imagen de abajo podemos ver el mismo documento en los dos modos del editor de RStudio: visual (a la izquierda) y fuente (a la derecha). El [editor visual](https://quarto.org/docs/visual-editor/) de RStudio ofrece una experiencia de creación [WYSIWYM](https://en.wikipedia.org/wiki/WYSIWYM)para Markdown. Para dar formato (por ejemplo, texto en negrita) puede usar la barra de herramientas, un método abreviado de teclado (**Windows**:Ctrl+B ó **Mac**:⌘B) o la construcción Markdown (**negrita**). El código fuente de texto sin formato subyacente al documento está escrito para usted y puede verlo/editarlo en cualquier momento cambiando al modo fuente para editarlo. Puede alternar entre estos dos modos haciendo clic en **Fuente** y **Visual** en la barra de herramientas del editor.
+En la imagen de abajo podemos ver el mismo documento en los dos modos del editor de RStudio: visual (a la izquierda) y Source (a la derecha). El [editor visual](https://quarto.org/docs/visual-editor/) de RStudio ofrece una experiencia de creación [WYSIWYM](https://en.wikipedia.org/wiki/WYSIWYM) para Markdown. Para dar formato (por ejemplo, texto en negrita) puede usar la barra de herramientas o la construcción Markdown (**negrita**). Puede alternar entre estos dos modos haciendo clic en **Source** y **Visual** en la barra de herramientas del editor.
 
 ::: {layout-ncol="2"}
-![](visual.png)
+![](visual.png){width="800"}
 
-![](source.png)
+![](source.png){width="800"}
 :::
 
 A continuación, dirijamos nuestra atención al contenido de nuestro documento Quarto. El archivo contiene tres tipos de contenido: un encabezado YAML, fragmentos de código y texto de markdown.
@@ -76,12 +79,13 @@ Un encabezado YAML (opcional) delimitado por tres guiones `(---)` en cada extrem
 ```{r, eval = FALSE}
 ---
 title: "Hola, Quarto"
+author: "R-Ladies Medellín"
 format: html
 editor: visual
 ---
 ```
 
-Cuando renderizamos, el `title`, `"Hola, Quarto"`, aparecerá en la parte superior del documento renderizado con un tamaño de fuente más grande que el resto del documento. Los otros dos campos YAML indican que la salida debe estar en `html` `format` y el documento debe abrirse en el editor visual, de manera predeterminada.
+Cuando renderizamos, el `title`, `"Hola, Quarto"`, aparecerá en la parte superior del documento renderizado con un tamaño de fuente más grande que el resto del documento. Los otros tres campos YAML indican que el `author` es R-Ladies Medellín la salida debe estar en `html` `format` y el documento debe abrirse en el editor visual, de manera predeterminada.
 
 La sintaxis básica de YAML utiliza pares clave-valor en el formato `key: value`. Otros campos YAML que se encuentran comúnmente en los encabezados de los documentos incluyen metadatos como `author`, `subtitle`, `date` y opciones de personalización como `theme`, `fontcolor`, `fig-width`, etc. Se puede obtener información sobre todos los campos YAML disponibles para documentos HTML [aquí](https://quarto.org/docs/reference/formats/html.html). Los campos YAML disponibles varían según el formato del documento, consulte [aquí](https://quarto.org/docs/reference/formats/pdf.html) los campos YAML para documentos PDF y [aquí](https://quarto.org/docs/reference/formats/docx.html) para MS Word.
 
@@ -89,7 +93,7 @@ La sintaxis básica de YAML utiliza pares clave-valor en el formato `key: value`
 
 Fragmentos de código R identificados con `{r}` con opciones de fragmento (opcional), en estilo YAML, identificados por `#\|` al principio de la línea.
 
-```{r}
+``` r
 #| label: load-packages
 #| include: true
 
@@ -101,7 +105,7 @@ salarios <- read_delim(url, delim = ";", escape_double = FALSE, col_types = cols
 
 En este caso, `label` del fragmento de código es `load-packages` y establecemos `include` en `false` para indicar que no queremos el fragmento en sí ni ninguna de sus salidas en los documentos representados.
 
-Además de renderizar el documento completo para ver los resultados de los fragmentos de código, también puede ejecutar cada fragmento de código de forma interactiva en el editor de RStudio haciendo clic en el icono ![](BotonEjecutar.png) o en el método abreviado de teclado (⇧⌘⏎). RStudio ejecuta el código y muestra los resultados en línea dentro de su archivo o en la consola, según su preferencia.
+Además de renderizar el documento completo para ver los resultados de los fragmentos de código, también puede ejecutar cada fragmento de código de forma interactiva en el editor de RStudio haciendo clic en el icono ![](BotonEjecutar.png). RStudio ejecuta el código y muestra los resultados en línea dentro de su archivo o en la consola, según su preferencia.
 
 ![](ejecutar.png)
 
@@ -109,7 +113,7 @@ Además de renderizar el documento completo para ver los resultados de los fragm
 
 Texto con formato, incluidos encabezados de sección, hipervínculos, una imagen incrustada y un fragmento de código en línea.
 
-![](markdown.png){width="400"}
+![](markdown.png){width="600"}
 
 Quarto utiliza la sintaxis de markdown para el texto. Si usa el editor visual, no necesitará aprender mucha sintaxis de markdown para crear su documento, ya que puede usar los menús y accesos directos para agregar un encabezado, texto en negrita, insertar una tabla, etc. Si usa el editor de código fuente, puede conseguirlos con expresiones de markdown como `##`, `**bold**`, etc.
 
@@ -121,5 +125,4 @@ Cuando se renderiza un documento Quarto, primero [knitr](https://yihui.org/knitr
 
 ## Siguiente
 
-Los siguientes tutoriales exploran Quarto con mayor profundidad
-
+Los tutoriales: Elementos y Autoría exploran Quarto con mayor profundidad. Este material está basado en el material presentado en [Quarto](https://quarto.org/docs/get-started/).

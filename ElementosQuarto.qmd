@@ -1,9 +1,5 @@
 ---
 title: "Elementos de Quarto"
-lang: es
-format:
-  html:
-    code-fold: true
 ---
 
 Este conjunto de datos contiene salarios de profesionales del área de ciencia de datos. Los datos los pueden descargar de la plataforma [Kaggle](https://www.kaggle.com/datasets/arnabchaki/data-science-salaries-2023). A continuación haremos la lectura de los datos con la libreria **readr** y usaremos las librerias **ggplot2**, **hrbrthemes**, y **scales** para realizar el boxplot comparativo.
@@ -12,6 +8,7 @@ Este conjunto de datos contiene salarios de profesionales del área de ciencia d
 #| label: load-packages
 #| warning: false
 #| echo: false
+
 library(readr)        # Para letura de datos en csv
 library(ggplot2)      # Para realizar gráficos 
 library(hrbrthemes)   # para personalizar tema de figura
@@ -22,32 +19,14 @@ url <- 'https://raw.githubusercontent.com/ousuga/Datos/main/ds_salaries.csv'
 salarios <- read_delim(url, delim = ";", escape_double = FALSE, col_types = cols(work_year = col_character(), remote_ratio = col_character()), trim_ws = TRUE)
 ```
 
-Los gráficos en la @fig-salariousd muestran la relación entre el salario y factores como el año, el tamaño de la compañía, el nivel de experiencia y el porcentaje de trabajo remoto. 
-En la @fig-salariousd-1 los colores están dados por el tamaño de la compañía, mientras que, en la @fig-salariousd-2 los colores están dados por el porcentaje de trabajo remoto.
+El siguiente gráfico muestra la relación entre el salario, la experiencia labotal y el porcentaje de trabajo remoto.
 
 ```{r}
-#| warning: false
-#| label: fig-salariousd
-#| fig-cap: "Salario de profesionales en Ciencia de datos."
-#| fig-subcap:
-#|   - "Salario vs Año y Tamaño compañía "
-#|   - "Salario vs Nivel de experiencia y Porcentaje de trabajo remoto"
-#| layout-ncol: 2
-#| column: page
-#| cache: true
+#| label: boxplot
 
-salarios$company_size <- factor(salarios$company_size, label=c("S", "M", "L"))
-salarios$experience_level <- factor(salarios$experience_level, label=c("EN", "MI", "SE", "EX"))
+salarios$experience_level <- factor(salarios$experience_level, 
+                                    label=c("EN", "MI", "SE", "EX"))
 salarios$remote_ratio <- factor(salarios$remote_ratio, label=c(0,50,100))
-
-ggplot(salarios, aes(y=salary_in_usd, x=work_year, fill=company_size, 
-                     col = company_size)) +
-  geom_boxplot(alpha=.6) +
-  theme_ipsum() +
-  ylab("Salario (USD)") + xlab("Año") + 
-  scale_y_continuous(labels  = label_number(scale = 1e-3, prefix = "$", 
-                                            suffix = "m", accuracy = 1)) 
-
 
 ggplot(salarios, aes(y=salary_in_usd, x=experience_level, fill=remote_ratio, 
                      col = remote_ratio)) +

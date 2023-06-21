@@ -43,8 +43,8 @@ ggplot(salarios, aes(y=salary_in_usd, x=experience_level, fill=remote_ratio,
                                             suffix = "m", accuracy = 1)) 
 ```
 
-Los gráficos en la Figura @fig-salusd muestran la relación entre el salario y factores como el año, el tamaño de la compañía, el nivel de experiencia y el porcentaje de trabajo remoto. 
-En la Figura @fig-salusd-1 los colores están dados por el tamaño de la compañía, mientras que, en la Figura @fig-salusd-2 los colores están dados por el porcentaje de trabajo remoto.
+Los gráficos en la @fig-salusd muestran la relación entre el salario y factores como el año, el tamaño de la compañía, el nivel de experiencia y el porcentaje de trabajo remoto. 
+En la @fig-salusd-1 los colores están dados por el tamaño de la compañía, mientras que, en la @fig-salusd-2 los colores están dados por el porcentaje de trabajo remoto.
 
 ```{r}
 #| warning: false

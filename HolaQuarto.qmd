@@ -21,7 +21,7 @@ Quarto le permite entretejer contenido y código ejecutable en un documento term
 
 ## Conoce Salarios en Ciencia de Datos
 
-![](roledatascience.png){style="float:right;" fig-alt="Algunos roles en Ciencia de Datos." width="100"}
+![](https://raw.githubusercontent.com/ousuga/DocumentosQuarto/main/roledatascience.png){style="float:right;" fig-alt="Algunos roles en Ciencia de Datos." width="230"}
 
 Los datos de Salarios en Ciencia de Datos de la plataforma [Kaggle](https://www.kaggle.com/datasets/arnabchaki/data-science-salaries-2023) contienen 11 columnas que relacionan el salario de personas que trabajan en Ciencia de Datos con variables de las empresas o de las personas. La base de datos contiene `r nrow(salarios)` registros.
 

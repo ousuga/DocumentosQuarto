@@ -1,0 +1,12 @@
+- source: TutorialHolaQuarto.qmd
+  quarto-pub:
+    - id: 0fd345cb-9878-4c84-ada2-23ac6fbb1c86
+      url: 'https://olga.quarto.pub/tutorial1q'
+- source: TutorialElementos.qmd
+  quarto-pub:
+    - id: f5c983db-36fc-4175-af4c-8add2f52fe61
+      url: 'https://olga.quarto.pub/tutot2q'
+- source: TutorialAutoria.qmd
+  quarto-pub:
+    - id: 6b457201-9d4c-426b-8f50-048c3362a2cf
+      url: 'https://olga.quarto.pub/tutot3q'

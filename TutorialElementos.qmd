@@ -1,17 +1,20 @@
 ---
 title: "Tutorial: Elementos"
 format: html
+lang: es
+toc: true
 editor: visual
 theme: minty 
+number-sections: true
 ---
 
 ## Descripción general
 
 Quarto admite bloques de código ejecutable dentro de Markdown. Esto le permite crear documentos e informes totalmente reproducibles: el código necesario para producir su salida es parte del documento mismo y se vuelve a ejecutar automáticamente cada vez que se procesa el documento.
 
-En este tutorial, le mostraremos cómo crear documentos computacionales totalmente reproducibles con Quarto en RStudio.
+En este tutorial, le mostraremos cómo crear documentos reproducibles con Quarto en RStudio.
 
-Si desea seguir paso a paso en su propio entorno, descargue el documento Quarto `(.qmd)` a continuación, ábralo en RStudio y haga clic en ![](BotonRender.png)**Render** (o use el método abreviado de teclado: **Windows**:Ctrl+Shift+K ó **Mac**:⇧⌘K). Recomendamos también marcar la casilla **Render on Save** para obtener una vista previa en vivo de sus cambios.
+Si desea seguir paso a paso en su propio entorno, descargue el documento Quarto `(.qmd)` a continuación, ábralo en RStudio y haga clic en ![](BotonRender.png)**Render**. Recomendamos también marcar la casilla **Render on Save** para obtener una vista previa en vivo de sus cambios.
 
 ::: {.callout-note appearance="minimal"}
 [Descargar Elementos.qmd](https://github.com/ousuga/DocumentosQuarto/blob/main/ElementosQuarto.qmd)
@@ -19,21 +22,21 @@ Si desea seguir paso a paso en su propio entorno, descargue el documento Quarto 
 
 ## Salida de celdas
 
-De forma predeterminada, el código y su salida se muestran dentro del documento representado.
+De forma predeterminada, el código y su salida se muestran como sigue.
 
 ![](Salida1.PNG)
 
-Sin embargo, para algunos documentos, es posible que desee ocultar todo el código y solo mostrar el resultado. Para hacerlo, especifique `echo: false` dentro de la opción de `ejxecute` en el YAML.
+Sin embargo, para algunos documentos, es posible que desee ocultar todo el código y solo mostrar el resultado. Para hacerlo, especifique `echo: false` dentro de la opción de `execute` en el YAML.
 
 ```{r, eval = FALSE}
 ---
-title: "Quarto Computations"
+title: "Elementos de Quarto"
 execute:
   echo: false
 ---
 ```
 
-Si marcó `Render and save` antes, simplemente guarde el documento después de realizar este cambio para obtener una vista previa en vivo. De lo contrario, renderice el documento para ver sus actualizaciones reflejadas. El resultado se verá como el siguiente.
+Si marcó `Render on Save` guarde el documento después de realizar este cambio para obtener una vista previa en vivo. De lo contrario, renderice el documento para ver sus actualizaciones. El resultado se verá como el siguiente.
 
 ![](salida2.PNG)
 
@@ -59,8 +62,6 @@ ggplot(salarios, aes(y=salary_in_usd, x=experience_level, fill=remote_ratio,
 Guarde el documento nuevamente y tenga en cuenta que el código ahora está incluido para el fragmento del `boxplot`.
 
 ![](Salida3.PNG)
-
-La opción de `echo` se puede establecer en `true`, `false` o `fenced`. El último podría ser de especial interés para escribir documentación y materiales didácticos, ya que le permite incluir el delimitador de código delimitado en su salida de código para enfatizar que el código ejecutable requiere ese delimitador. Puede leer más sobre esta opción en la documentación de [Fenced Echo](https://quarto.org/docs/computations/execution-options.html#fenced-echo).
 
 Hay una gran cantidad de otras opciones disponibles para la salida de la celda, por ejemplo, `warning` para mostrar/ocultar advertencias (que puede ser especialmente útil para mensajes de carga de paquetes), `include` como captura general para evitar que se incluya cualquier salida (código o resultados) en la salida y `error` para evitar que los errores en la ejecución del código detengan la representación del documento (e impriman el error en el documento representado).
 
@@ -125,7 +126,7 @@ Podemos mejorar la apariencia y accesibilidad de nuestra figura. Podemos cambiar
 Agregaremos las siguientes opciones de fragmentos.
 
 ``` r
-#| label: fig-salariousd
+#| label: fig-boxplot
 #| fig-cap: "Salario de profesionales en Ciencia de datos."
 #| fig-alt: "Boxplot de salario versus experiencia laboral y porcentaje de trabajo remoto."
 #| fig-width: 6
@@ -135,19 +136,19 @@ Agregaremos las siguientes opciones de fragmentos.
 Guarde el documento para ver el gráfico actualizado. Tenga en cuenta que también hemos actualizado la narrativa con una [referencia cruzada](https://quarto.org/docs/authoring/cross-references.html#computations) a esta figura usando lo siguiente.
 
 ``` r
-La @fig-salariousd muestra la relación entre el salario, el nivel de experiencia laboral y el porcentaje de trabajo remoto.
+La @fig-boxplot muestra la relación entre el salario, el nivel de experiencia laboral y el porcentaje de trabajo remoto.
 ```
 
 ![](Salida7.PNG)
 
-## Figuras múltiples
+## Múltiples Figuras
 
 Agreguemos otra figura a nuestro fragmento: un boxplot comparativo. Nuestro objetivo es mostrar estas figuras una al lado de la otra (es decir, en dos columnas), con un subtítulo descriptivo para cada figura. Dado que esto producirá una visualización más amplia, también usaremos la opción de `column` para distribuirla en toda la página en lugar de limitarnos a la columna del cuerpo del texto.
 
 Hay bastantes cambios en este fragmento. Para seguir, copie y pegue las opciones que se describen a continuación en su documento Quarto.
 
 ``` r
-#| label: fig-salusd
+#| label: fig-boxplot
 #| fig-cap: "Salario de profesionales en Ciencia de datos."
 #| fig-subcap:
 #|   - "Salario vs Año y Tamaño compañía "
@@ -177,8 +178,8 @@ ggplot(salarios, aes(y=salary_in_usd, x=experience_level, fill=remote_ratio,
 Además, reemplace el texto existente que describe la visualización con lo siguiente.
 
 ``` r
-Los gráficos en la Figura @fig-salusd muestran la relación entre el salario y factores como el año, el tamaño de la compañía, el nivel de experiencia y el porcentaje de trabajo remoto. 
-En la Figura @fig-salusd-1 los colores están dados por el tamaño de la compañía, mientras que, en la Figura @fig-salusd-2 los colores están dados por el porcentaje de trabajo remoto.
+Los gráficos en la @fig-boxplot muestran la relación entre el salario y factores como el año, el tamaño de la compañía, el nivel de experiencia y el porcentaje de trabajo remoto. 
+En la @fig-boxplot-1 los colores están dados por el tamaño de la compañía, mientras que, en la Figura @fig-boxplot-2 los colores están dados por el porcentaje de trabajo remoto.
 ```
 
 Como estamos trabajando en idioma español debemos adicionar una opción en el YAML de la siguiente forma
@@ -226,7 +227,7 @@ Esto permite que la visualización de nuestra figura se extienda más allá de l
 Puede controlar cómo se imprimen los marcos de datos de forma predeterminada utilizando la opción de documento `df-print`. Las opciones disponibles incluyen:
 
 | Opción    | Descripción                                                                                                                                                      |
-|----------------------|--------------------------------------------------|
+|-----------------------|-------------------------------------------------|
 | `default` | Utilice el método S3 predeterminado para el marco de datos.                                                                                                      |
 | `kable`   | Tabla de markdown usando la función [`knit::kable()`](https://bookdown.org/yihui/rmarkdown-cookbook/kable.html).                                                 |
 | `tibble`  | Tabla de texto plano usando el paquete [`tibble`](https://tibble.tidyverse.org/).                                                                                |
@@ -245,13 +246,13 @@ format:
 
 ## Código en línea
 
-Para incluir expresiones ejecutables dentro de Markdown, encierre la expresión en \`r\`. Por ejemplo, podemos usar código en línea para indicar el número de observaciones en nuestros datos. Intente agregar el siguiente texto de descuento a su documento en cuarto.
+Para incluir expresiones ejecutables dentro de Markdown, encierre la expresión en \`r\`. Por ejemplo, podemos usar código en línea para indicar el número de observaciones en nuestros datos. Intente agregar el siguiente texto de markdown a su documento.
 
 ```{r, eval = FALSE}
 Existen `r nrow(salarios)` observaciones en nuestros datos.
 ```
 
-Guarde su documento e verifique la salida renderizada. La expresión dentro de los acentos graves se ha ejecutado y la oración incluye el número real de observaciones.
+Guarde su documento y verifique la salida renderizada. La expresión dentro de los acentos graves se ha ejecutado y la oración incluye el número real de observaciones.
 
 ::: {.callout-note appearance="minimal"}
 Existen 3755 observaciones en nuestros datos.
@@ -301,3 +302,5 @@ Si siguió paso a paso este tutorial, ahora debería tener un documento Quarto q
 ::: {.callout-note appearance="minimal"}
 [Descargar Elementos Completo.qmd](https://github.com/ousuga/DocumentosQuarto/blob/main/ElementosQuartoCompleto.qmd)
 :::
+
+Este material está basado en el material presentado en [Quarto](https://quarto.org/docs/get-started/).

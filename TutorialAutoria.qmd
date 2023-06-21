@@ -1,8 +1,11 @@
 ---
 title: "Tutorial: Autoría"
 format: html
+lang: es
+toc: true
 editor: visual
 theme: minty 
+number-sections: true
 ---
 
 ## Descripción general
@@ -17,9 +20,9 @@ Quarto admite la representación de notebooks en docenas de formatos de salida d
 
 ### Opciones de formato
 
-Puede elegir el formato en el que desea representar su documento Quarto al momento de crear su nuevo documento. Para crear un nuevo documento, vaya a **File \> New File \>Quarto Document**... Alternativamente, use la paleta de comandos (accesible a través de Ctrl+Shift+P), busque **Create a new Quarto document** y presione regresar.
+Puede elegir el formato en el que desea representar su documento Quarto al momento de crear su nuevo documento. Para crear un nuevo documento, vaya a **File \> New File \>Quarto Document**.
 
-En el campo **Title**, proporcione un título para su documento (por ejemplo, la captura de pantalla a continuación sugiere "Salarios") y agregue su nombre al campo **Author**. A continuación, seleccionará el formato de salida para su documento. De forma predeterminada, RStudio sugiere usar HTML como salida, dejemos ese valor predeterminado por ahora.
+En el campo **Title**, proporcione un título para su documento (por ejemplo, la captura de pantalla a continuación sugiere "Salarios en Ciencia de Datos") y agregue su nombre al campo **Author**. A continuación, seleccionará el formato de salida para su documento. De forma predeterminada, RStudio sugiere usar HTML como salida, dejemos ese valor predeterminado por ahora.
 
 ![](Salida1Autoria.PNG)
 
@@ -32,7 +35,7 @@ author: "R-Ladies Medellín"
 ---
 ```
 
-Tenga en cuenta que nuestra elección de formato (HTML) ni siquiera se refleja en YAML, ya que es el formato de salida predeterminado para los documentos en cuarto. Sin embargo, puede editar directamente el YAML para cambiar el formato de salida, p. a PDF (`pdf`) o MS Word (`docx`). Agregue `format: pdf` al YAML de su documento como se muestra a continuación.
+Tenga en cuenta que nuestra elección de formato (HTML) ni siquiera se refleja en YAML, ya que es el formato de salida predeterminado para los documentos en cuarto. Sin embargo, puede editar directamente el YAML para cambiar el formato de salida, por ejemplo a PDF (`pdf`) o MS Word (`docx`). Agregue `format: pdf` al YAML de su documento como se muestra a continuación.
 
 ```{r, eval =FALSE}
 ---
@@ -48,13 +51,13 @@ Desafortunadamente, este documento no tiene contenido, por lo que renderizarlo n
 [Descargar Autoria.qmd](https://github.com/ousuga/DocumentosQuarto/blob/main/Autoria.qmd)
 :::
 
-Para crear archivos PDF, deberá instalar una distribución reciente de LaTeX. Recomendamos el uso de TinyTeX (que se basa en TexLive), que puedes instalar con el siguiente comando en la **terminal**:
+Para crear archivos PDF, deberá instalar una versión reciente de LaTeX. Recomendamos el uso de TinyTeX (que se basa en TexLive), que puedes instalar con el siguiente comando en la **terminal**:
 
 ::: {.callout-note appearance="minimal"}
 quarto install tool tinytex
 :::
 
-Consulte el artículo sobre [PDF Engines](https://quarto.org/docs/output-formats/pdf-engine.html) para obtener detalles sobre el uso de otras distribuciones de LaTeX y motores de compilación de PDF.
+Consulte el artículo sobre [PDF Engines](https://quarto.org/docs/output-formats/pdf-engine.html) para obtener detalles sobre el uso de otras versiones de LaTeX y motores de compilación de PDF.
 
 Una vez que haya configurado LaTeX, haga clic en **Render**. Recomendamos también marcar la casilla **Render on Save** para obtener una vista previa en vivo de sus cambios. Como se muestra a continuación, debería ver el PDF renderizado en el visor de RStudio.
 
@@ -76,7 +79,7 @@ Si marcó **Render on Save** anteriormente, simplemente guarde el documento desp
 
 ![](salidapdfnumerada.png)
 
-Una opción de formato en la que no entraremos en demasiados detalles en este tutorial es `revealjs`. ¡Con este formato puedes hacer presentaciones con Quarto! De hecho, Quarto es compatible con una variedad de formatos para crear presentaciones, incluidos `revealjs` para diapositivas HTML, `pptx` para PowerPoint y `beamer` para LaTeX/PDF. El artículo [Presentaciones](https://quarto.org/docs/presentations/) brinda un recorrido completo sobre la creación de presentaciones de diapositivas con Quarto.
+Una opción de formato en la que no entraremos en demasiados detalles en este tutorial es `revealjs`. ¡Con este formato puedes hacer presentaciones con Quarto! De hecho, Quarto es compatible con una variedad de formatos para crear presentaciones, incluidos `revealjs` para diapositivas HTML, `pptx` para PowerPoint y `beamer` para LaTeX/PDF. El artículo [Presentaciones](https://quarto.org/docs/presentations/) brinda un recorrido completo sobre la creación de presentaciones con Quarto.
 
 ### Múltiples formatos
 
@@ -175,7 +178,7 @@ Hay muchas opciones disponibles para controlar el comportamiento de la tabla de 
 
 ## Ecuaciones
 
-Si está utilizando el modo de editor visual, puede agregar ecuaciones LaTeX a documentos Quarto en RStudio utilizando la herramienta [Insert Anything](https://quarto.org/docs/visual-editor/#insert-anything). Puede acceder a él con / al comienzo de un bloque vacío o Cmd+/ en cualquier otro lugar.
+Si está utilizando el modo de editor visual, puede agregar ecuaciones LaTeX a documentos Quarto en RStudio utilizando la herramienta [Insert Anything](https://quarto.org/docs/visual-editor/#insert-anything). Puede acceder a él con / al comienzo de un bloque vacío.
 
 ![](salidaecuaciones.png)
 
@@ -272,3 +275,5 @@ Si siguió paso a paso este tutorial, ahora debería tener un documento Quarto q
 ::: {.callout-note appearance="minimal"}
 [Descargar AutoriaCompleta.qmd](https://github.com/ousuga/DocumentosQuarto/blob/main/AutoriaCompleta.qmd)
 :::
+
+Este material está basado en el material presentado en [Quarto](https://quarto.org/docs/get-started/).
