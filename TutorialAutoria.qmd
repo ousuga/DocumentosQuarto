@@ -45,7 +45,7 @@ format: pdf
 Desafortunadamente, este documento no tiene contenido, por lo que renderizarlo no resultaría en un resultado muy interesante. Para que sea un poco más fácil demostrar todas las funciones que queremos resaltar en este tutorial, cerremos este documento vacío y comencemos con uno que tenga un poco de contenido. Si desea seguir paso a paso en su propio entorno, descargue el documento Quarto (`.qmd`) a continuación y ábralo en RStudio.
 
 ::: {.callout-note appearance="minimal"}
-[Descargar Autoria.qmd](https://github.com/ousuga/DocumentosQuarto/blob/main/Autor%C3%ADa.qmd)
+[Descargar Autoria.qmd](https://github.com/ousuga/DocumentosQuarto/blob/main/Autoria.qmd)
 :::
 
 Para crear archivos PDF, deberá instalar una distribución reciente de LaTeX. Recomendamos el uso de TinyTeX (que se basa en TexLive), que puedes instalar con el siguiente comando en la **terminal**:
@@ -267,4 +267,8 @@ Así se ve el documento cuando se renderiza.
 
 Una vez que su documento se procesa en HTML, puede publicarlo en [RPubs](https://rpubs.com/) simplemente haciendo clic en el botón Publicar en la barra de herramientas del editor o en la ventana de vista previa. Alternativamente, puede usar la función `quarto::quarto_publish_doc()`.
 
-Si siguió paso a paso este tutorial, ahora debería tener un documento Quarto que implemente todo lo que cubrimos. De lo contrario, puede descargar una versión completa de Autoria.qmd a continuación.
+Si siguió paso a paso este tutorial, ahora debería tener un documento Quarto que implemente todo lo que cubrimos. De lo contrario, puede descargar una versión completa de `Autoria.qmd` a continuación.
+
+::: {.callout-note appearance="minimal"}
+[Descargar AutoriaCompleta.qmd](https://github.com/ousuga/DocumentosQuarto/blob/main/AutoriaCompleta.qmd)
+:::
