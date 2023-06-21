@@ -1,0 +1,110 @@
+---
+title: "Salarios en Ciencia de Datos"
+author: "R-Ladies Medellín"
+lang: es
+format: pdf
+---
+
+## Introduccion
+
+En este análisis, construimos un modelo que predice los salarios de los profesionales basados en factores asociados al profesional y a la empresa.
+
+```{r}
+#| label: load-pkgs
+#| code-summary: "Paquetes"
+#| message: false
+
+library(tidyverse)  # Para la gestión y visualización de datos 
+library(knitr)      # Para tablas
+library(broom)      # Para el resumen del modelo
+library(readr)      # Para lectura de datos separados por csv
+library(ggplot2)
+library(hrbrthemes)
+library(scales)
+
+url <- 'https://raw.githubusercontent.com/ousuga/Datos/main/ds_salaries.csv'
+salarios <- read_delim(url, delim = ";", escape_double = FALSE, 
+                       col_types = cols(work_year = col_character(), 
+                                        remote_ratio = col_character()), 
+                       trim_ws = TRUE)
+```
+
+Vamos a presentar los resultados del análisis de datos exploratorio en @sec-aed y el modelo de regresión en @sec-modelo.
+
+## Análisis exploratorio de datos {#sec-aed}
+
+Como parte del análisis de datos exploratorios vamos a visualizar la relación entre el salario y el nivel de experiencia de los profesionales.
+
+### Visualización de datos
+
+@fig-densbar muestra la densidad de la distribución del `salary_in_usd` y un diagrama de barras del `experience_level` de los profesionales.
+
+```{r}
+#| label: fig-densbar
+#| fig-cap: "Densidad y diagrama de barras de salario y nivel de experiencia"
+#| fig-subcap:
+#|   - "Densidad de `salary_in_usd`"
+#|   - "Diagrama de barras de `experience_level`" 
+#| layout-ncol: 2
+#| column: page-right
+
+ggplot(salarios, aes(x = salary_in_usd)) + 
+  geom_density(fill="#69b3a2", color="#e9ecef", alpha=0.8) +
+  labs(y = "Densidad") + 
+  scale_x_continuous(labels  = label_number(scale = 1e-3, prefix = "$", 
+                                            suffix = "m", accuracy = 1)) 
+
+ggplot(salarios, aes(x = experience_level, fill = experience_level)) + 
+  geom_bar() +
+  scale_fill_brewer(palette="GnBu")  + 
+  labs(x = "Nivel de experiencia", y = "Número de empleados analizados")
+```
+
+@fig-boxplotcomp muestra la relación entre salarios y nivel de experiencia de profesionales.
+
+```{r}
+#| label: fig-boxplotcomp
+#| fig-cap: "Salario vs Nivel de experiencia"
+
+ggplot(salarios, aes(x=salary_in_usd, group=experience_level,
+                     fill=experience_level, col = experience_level)) +
+  geom_density(adjust=1.5, alpha=.6) 
+  ylab("") 
+```
+
+### Summary statistics
+
+@tbl-stats muestra resumen estadístico para estas dos variables.
+
+```{r}
+#| label: tbl-stats
+#| tbl-cap: "Resumen estadístico de salarios vs Nivel de experiencia"
+
+salarios %>%
+  summarise(
+    `Mediana de Salario` = median(salary_in_usd),
+    `RIC salario` = IQR(salary_in_usd)
+  ) %>%
+  kable(digits = c(0, 0))
+```
+
+## Modelación {#sec-modelo}
+
+Ajustamos un modelo de regresión lineal simple de la forma mostrada en la @eq-modelo.
+
+$$
+Salario = \hat{\beta}_0 + \hat{\beta}_1 \times Experiencia + \epsilon
+$$ {#eq-modelo}
+
+@tbl-lm muestra la salida del modelo de regresión.
+
+```{r}
+#| label: tbl-lm
+#| tbl-cap: "Modelo de regresión lineal de salarios vs nivel de experiencia"
+
+salario_modelo <- lm(salary_in_usd ~ experience_level, data = salarios)
+
+salario_modelo %>%
+  tidy() %>%
+  kable(digits = c(0, 0, 2, 2, 2))
+```
