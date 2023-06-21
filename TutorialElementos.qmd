@@ -222,28 +222,6 @@ Finalmente, agregamos una opción para controlar el espacio de la página que oc
 
 Esto permite que la visualización de nuestra figura se extienda más allá de la columna de texto del cuerpo normal. Consulte la documentación sobre el [Diseño de artículo](https://quarto.org/docs/authoring/article-layout.html) para conocer todas las opciones de diseño disponibles.
 
-## Marco de datos
-
-Puede controlar cómo se imprimen los marcos de datos de forma predeterminada utilizando la opción de documento `df-print`. Las opciones disponibles incluyen:
-
-| Opción    | Descripción                                                                                                                                                      |
-|-----------------------|-------------------------------------------------|
-| `default` | Utilice el método S3 predeterminado para el marco de datos.                                                                                                      |
-| `kable`   | Tabla de markdown usando la función [`knit::kable()`](https://bookdown.org/yihui/rmarkdown-cookbook/kable.html).                                                 |
-| `tibble`  | Tabla de texto plano usando el paquete [`tibble`](https://tibble.tidyverse.org/).                                                                                |
-| `paged`   | Tabla HTML con paginación para filas y columnas (implementado usando [rmarkdown::paged_table()](https://pkgs.rstudio.com/rmarkdown/reference/paged_table.html)). |
-
-Por ejemplo, aquí especificamos que queremos impresión paginada (`paged`) para marcos de datos:
-
-```{r, eval = FALSE}
----
-title: "Document"
-format: 
-   html:
-     df-print: paged
----
-```
-
 ## Código en línea
 
 Para incluir expresiones ejecutables dentro de Markdown, encierre la expresión en \`r\`. Por ejemplo, podemos usar código en línea para indicar el número de observaciones en nuestros datos. Intente agregar el siguiente texto de markdown a su documento.
@@ -279,23 +257,6 @@ El salario máximo de los profesionales con un nivel de experiencia de EN es de 
 ```
 
 Guarde su documento e verifique la salida renderizada.
-
-## Almacenamiento en caché
-
-Si su documento incluye fragmentos de código que tardan demasiado en calcularse, es posible que desee almacenar en caché los resultados de esos fragmentos. Puede usar la opción de `cache` a nivel de documento usando la opción de ejecución YAML.
-
-```{r, eval = FALSE}
-execute:
-  cache: true
-```
-
-Sin embargo, puede que no sea preferible almacenar en caché todos los fragmentos de código de un documento. También puede indicar qué fragmentos deben almacenarse en caché directamente con una opción de fragmento.
-
-``` r
-#| cache: true
-```
-
-Intente agregar esta opción de fragmento a uno de los fragmentos de código en su documento que produce un gráfico y guárdelo. Cuando se procesa el documento, verá que se ha creado una nueva carpeta en su directorio de trabajo con el mismo nombre que su documento y el sufijo `\_cache`. Esta carpeta contiene los resultados en caché. Puede encontrar más información sobre el almacenamiento en caché en documentos Quarto en la documentación de Caché.
 
 Si siguió paso a paso este tutorial, ahora debería tener un documento Quarto que implemente todo lo que cubrimos. De lo contrario, puede descargar una versión completa de `Elementos.qmd` a continuación.
 
